@@ -1,8 +1,9 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
-export default function LoginForm() {
+
+export default function Login() {
   return (
-    <div className="w-full max-w-md bg-white border-gray-100 border-2 rounded-xl grid gap-1 py-10 px-4  shadow-lg">
+   <div className="w-full max-w-md bg-white border-gray-100 border-2 rounded-xl grid gap-1 py-10 px-4  shadow-lg">
           
           <h1 className="text-4xl lg:text-6xl font-secondary text-primary-color text-center">
             Taleb
@@ -20,6 +21,7 @@ export default function LoginForm() {
             Please log in to manage your exams, view student reports, and configure your dashboard settings.
           </p>
 
+          <form action="">
           {/* Email */}
           <label htmlFor="" className="text-gray-700">Email Address</label>
           <input
@@ -36,22 +38,30 @@ export default function LoginForm() {
             className="w-full p-3 text-[#BABABA] border rounded-md mb-2"
           />
 
+          <Link
+              to="/forgot-password"
+              >
           <div className="text-right text-sm text-blue-600">
             Forgot Password?
           </div>
-
+              </Link>
+            
           {/* Button */}
           <div className="w-full grid items-center justify-center gap-y-4 mt-2">
-          <button className="bg-blue-800 text-white px-5 py-1 rounded-md">
+          <button className="bg-blue-800 text-white px-10 py-2 rounded-md">
             Login
           </button>
+                      
+             <Link
+              to="/register"
+              className="border border-blue-800 text-blue-800 px-10 py-2 rounded-md font-semibold text-center hover:bg-blue-50 transition-colors"
+              >
+              Create New Account
+            </Link>
 
-          <button className="border border-blue-800 text-blue-800 px-5 py-1 rounded-md">
-            Create New Account
-          </button>
 
           </div>
+              </form>  
         </div>
   )
 }
-
