@@ -5,17 +5,17 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="w-full max-w-md bg-white border border-gray-100 shadow-xl p-8 flex flex-col gap-5 select-none my-6">
+    <div className="w-full grid grid-cols-1 gap-4 bg-white border border-gray-300 rounded-2xl shadow-xl p-8">
       
       {/* Logo & Header */}
-      <div className="text-center space-y-1">
+      <div className="text-center">
         <h1 className="text-5xl font-secondary text-primary-color">
           Taleb
         </h1>
-        <h2 className="text-xl font-bold text-gray-800 tracking-tight mt-2">
+        <h2 className="text-xl font-bold text-gray-800 tracking-tight">
           Welcome To Tawla!
         </h2>
-        <p className="text-xs text-gray-400 max-w-[280px] mx-auto leading-normal">
+        <p className="text-xs text-gray-400 mx-auto leading-normal">
           Empower Your Teaching With Seamless Exam Management
         </p>
       </div>
