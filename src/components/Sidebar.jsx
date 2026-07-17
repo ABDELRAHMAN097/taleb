@@ -72,7 +72,7 @@ export default function Sidebar({
 </button>
 
       {isOpen && (
-        <div className="h-full flex flex-col justify-between p-6">
+        <div className="h-full flex flex-col">
 
           <div>
             <div className="mb-5">
@@ -124,7 +124,7 @@ export default function Sidebar({
 
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
+            className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
           >
             <RiLogoutBoxRLine className="w-5 h-5" />
 
