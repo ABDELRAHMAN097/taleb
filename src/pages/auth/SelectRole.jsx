@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function SelectRole() {
   return (
-       <div className="w-full max-w-md bg-white border-gray-100 border-2 rounded-xl grid gap-4 py-10 px-4  shadow-lg">
+       <div className="w-full max-w-md bg-white border-gray-300 border rounded-xl grid gap-4 py-10 px-4  shadow-lg">
 
         <h1 className="text-4xl lg:text-6xl font-secondary text-primary-color text-center">
             Taleb
