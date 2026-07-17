@@ -6,26 +6,26 @@ import {
 
 export default function TopNavbar() {
   return (
-    <header className="w-full py-2 px-8 mb-4 flex items-center justify-between sticky top-0 z-20 bg-white">
+   <header className="w-full px-8 py-2 flex items-center justify-between gap-4 bg-white">
 
-      <div className="relative">
+        <div className="relative flex-1 max-w-sm md:max-w-xl">
         <HiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
 
         <input
-          type="text"
-          placeholder="Search"
-          className="w-80 pl-11 pr-4 py-2.5 bg-[#F4F6FA] border border-gray-200 rounded-xl"
+            type="text"
+            placeholder="Search"
+            className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl bg-[#F4F6FA]"
         />
-      </div>
+        </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
 
         <button className="p-2.5 border rounded-xl">
-          <HiOutlineGlobe className="w-5 h-5" />
+          <HiOutlineGlobe className="w-3.5 h-3.5 md:w-5 md:h-5" />
         </button>
 
         <button className="relative p-2.5 border rounded-xl">
-          <HiOutlineBell className="w-5 h-5" />
+          <HiOutlineBell className="w-3.5 h-3.5 md:w-5 md:h-5" />
 
           <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
         </button>
@@ -33,7 +33,7 @@ export default function TopNavbar() {
         <div className="flex items-center gap-3">
 
           <div className="text-right">
-            <p className="text-xs text-gray-400">
+            <p className="text-sm md:text-xs text-gray-400">
               Welcome, Center
             </p>
 

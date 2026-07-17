@@ -130,13 +130,15 @@ export default function Register() {
         </div>
 
         {/* Create Account Button */}
+        <Link to="/select-role">
+
         <button
           type="submit"
           className="w-full bg-[#11255C] text-white py-3.5 rounded-2xl font-bold text-sm hover:bg-[#1b347a] transition-all shadow-md mt-2 cursor-pointer"
         >
           Create Account
         </button>
-
+        </Link>
         {/* Footer */}
         <p className="text-center text-xs text-gray-400 font-medium">
           Already Have An Account?{" "}

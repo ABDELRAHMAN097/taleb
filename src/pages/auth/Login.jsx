@@ -13,13 +13,13 @@ export default function Login() {
   return (
    <div className="w-full max-w-md bg-white border-gray-300 border rounded-2xl grid gap-1 py-7 px-4 space-y-4 shadow-lg">
 
-          <dev className="text-center">
+          <div className="text-center">
           <AuthHeader
           role="Admin Access"
           heading="Welcome back, Admin!"
           description="Please log in to manage your exams, view student reports, and configure your dashboard settings."
           />
-          </dev>
+          </div>
           <form action="" className="space-y-1">
           {/* Email */}
         <div className="space-y-1">
@@ -73,10 +73,15 @@ export default function Login() {
           </Link>
             
           {/* Button */}
+            
           <div className="w-full grid items-center justify-center gap-y-4 mt-2">
-          <button className="bg-blue-800 text-white px-10 py-2 rounded-md">
-            Login
-          </button>
+            
+             <Link
+              to="/dashboard"
+              className="bg-blue-800 text-center text-white px-10 py-2 rounded-md"
+              >
+              Login
+            </Link>
                       
              <Link
               to="/register"
