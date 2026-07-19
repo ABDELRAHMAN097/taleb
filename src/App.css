@@ -12,4 +12,6 @@ body {
   font-family: var(--font-primary);
   margin: 0;
   padding: 0;
+  background-color: #f7f7f7;
+  font-family: Poppins;
 }

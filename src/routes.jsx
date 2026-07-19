@@ -3,6 +3,8 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import ForgotPassword from "@/pages/auth/ForgotPassword";
 import Login from "@/pages/auth/Login";
 import Register from "@/pages/auth/Register";
+import ResetPassword from "@/pages/auth/ResetPassword";
+import VerifyCode from "@/pages/auth/VerifyCode";
 import SelectRole from "@/pages/auth/SelectRole";
 import Dashboard from "@/pages/dashboard/Dashboard";
 import Assessments from "@/pages/dashboard/Assessments";
@@ -11,6 +13,7 @@ import QuestionBank from "@/pages/dashboard/QuestionBank";
 import Groups from "@/pages/dashboard/Groups";
 import Reports from "@/pages/dashboard/Reports";
 import Setting from "@/pages/dashboard/Setting";
+
 
 export const routes = [
   {
@@ -27,6 +30,14 @@ export const routes = [
       {
         path: "/forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
+      },
+      {
+        path: "verify-code",
+        element: <VerifyCode />,
       },
       {
         path: "/select-role",
