@@ -85,7 +85,7 @@ const AuthLayout = () => {
       </div>
 
       <div className="w-full overflow-y-auto">
-  <div className="min-h-full flex justify-center py-8 px-4">
+  <div className="min-h-screen bg-[#F4F6FA] flex items-center justify-center px-4 py-8">
     <Outlet />
   </div>
 </div>
