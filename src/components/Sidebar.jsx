@@ -72,11 +72,14 @@ export default function Sidebar({
 </button>
 
       {isOpen && (
-        <div className="h-full flex flex-col">
+        <div className="h-full flex flex-col bg-primary-color py-4 px-2">
 
           <div>
             <div className="mb-5">
-              <AuthHeader title="Taleb" />
+              <AuthHeader
+              title="Taleb"
+              titleClass="text-hover-color text-4xl lg:text-6xl"
+              />
             </div>
 
             <nav className="flex flex-col gap-1.5">
@@ -90,8 +93,8 @@ export default function Sidebar({
                     className={({ isActive }) =>
                       `flex items-center justify-between px-4 py-3 rounded-xl transition ${
                         isActive
-                          ? "bg-[#D3DCF2]/75 text-primary-color font-semibold"
-                          : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                          ? "bg-hover-color text-primary-color font-bold"
+                          : "text-hover-color hover:bg-[#ebebeb] hover:text-gray-900"
                       }`
                     }
                   >
@@ -102,7 +105,7 @@ export default function Sidebar({
                             className={`w-5 h-5 ${
                               isActive
                                 ? "text-primary-color"
-                                : "text-gray-400"
+                                : "text-hover-color"
                             }`}
                           />
 
@@ -124,7 +127,7 @@ export default function Sidebar({
 
           <Link
             to="/"
-            className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-gray-500 hover:bg-red-50 hover:text-red-600 transition"
+            className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
           >
             <RiLogoutBoxRLine className="w-5 h-5" />
 

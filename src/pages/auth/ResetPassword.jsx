@@ -16,6 +16,7 @@ export default function ResetPassword() {
 
       <AuthHeader
         role="Admin Access"
+        titleClass="text-primary-color text-4xl lg:text-6xl"
         heading="New Password"
         description="Enter A New Password Below To Change Your Password"
       />

@@ -19,6 +19,7 @@ export default function VerifyCode() {
 
       <AuthHeader
         role="Admin Access"
+        titleClass="text-primary-color text-4xl lg:text-6xl"
         heading="Verification"
         description="We Have Sent A Code To Your Email Address"
       />

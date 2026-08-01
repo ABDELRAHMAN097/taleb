@@ -16,6 +16,7 @@ export default function ForgotPassword() {
       <div className="text-center">
         <AuthHeader
           role="Admin Access"
+          titleClass="text-primary-color text-4xl lg:text-6xl"
           heading="Forgot Password?"
           description="enter your Email Address below to reset your password"
         />

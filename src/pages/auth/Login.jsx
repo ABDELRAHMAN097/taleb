@@ -16,6 +16,7 @@ export default function Login() {
       <div className="mb-8">
         <AuthHeader
           role="Admin Access"
+          titleClass="text-primary-color text-4xl lg:text-6xl"
           heading="Welcome back, Admin!"
           description="Please log in to manage your exams, view student reports, and configure your dashboard settings."
         />

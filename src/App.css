@@ -4,6 +4,8 @@
 
 @theme {
   --color-primary-color: #11255C;
+  --color-secondary-color: #11255C;
+  --color-hover-color: #D7F2FE;
   --font-secondary: "Aladin", cursive;
   --font-primary: "Plus Jakarta Sans", sans-serif;
 }

@@ -13,6 +13,7 @@ import QuestionBank from "@/pages/dashboard/QuestionBank";
 import Groups from "@/pages/dashboard/Groups";
 import Reports from "@/pages/dashboard/Reports";
 import Setting from "@/pages/dashboard/Setting";
+import Exams from "@/pages/dashboard/Exams";
 
 
 export const routes = [
@@ -57,6 +58,10 @@ export const routes = [
         element: <Assessments />,
       },
       {
+        path: "/exams",
+        element: <Exams />,
+      },
+      {
         path: "/wallet",
         element: <Wallet />,
       },
@@ -79,4 +84,5 @@ export const routes = [
     ],
   },
 ];
+
 

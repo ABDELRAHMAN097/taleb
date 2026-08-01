@@ -53,6 +53,7 @@ export const menuItems = [
 export const pageTitles = {
   "/dashboard": "Dashboard",
   "/assessments": "Assessments",
+  "/exams": "Create New Exam",
   "/wallet": "Wallet",
   "/question-bank": "Question Bank",
   "/groups": "Groups",

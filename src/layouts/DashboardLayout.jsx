@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 
 import Sidebar from "../components/Sidebar";
@@ -28,11 +28,20 @@ export default function DashboardLayout() {
       >
         <TopNavbar />
 
-        <section className="mx-8 my-4">
-          <div className="p-2 bg-white rounded-t-lg shadow-sm">
+        <section className="flex justify-between items-center mx-8 my-4 p-2 bg-white rounded-t-lg shadow-sm">
+          <div className="">
             <h2 className="text-2xl font-bold text-primary-color">
               {currentTitle}
             </h2>
+          </div>
+
+          <div>
+            <Link
+              to="/exams"
+              className="p-2.5 text-hover-color border border-hover-color hover:bg-hover-color hover:text-white rounded-xl inline-block transition text-sm font-semibold"
+            >
+              + Create New Exam
+            </Link>
           </div>
         </section>
 
