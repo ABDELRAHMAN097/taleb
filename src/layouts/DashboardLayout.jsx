@@ -23,14 +23,14 @@ export default function DashboardLayout() {
       />
 
       <div
-        className={`flex-1 flex flex-col min-h-screen transition-all duration-300
+        className={`flex-1 flex flex-col min-h-screen  transition-all duration-300
         ${isSidebarOpen ? "ml-[270px]" : "ml-[20px]"}`}
       >
         <TopNavbar />
 
-        <section className="flex justify-between items-center mx-8 my-4 p-2 bg-white rounded-t-lg shadow-sm">
+        <section className="flex justify-between items-center mx-2 md:mx-8 my-4 p-2 bg-white rounded-t-lg shadow-sm">
           <div className="">
-            <h2 className="text-2xl font-bold text-primary-color">
+            <h2 className="text-sm md:text-2xl font-bold text-primary-color">
               {currentTitle}
             </h2>
           </div>
@@ -38,14 +38,14 @@ export default function DashboardLayout() {
           <div>
             <Link
               to="/exams"
-              className="p-2.5 text-hover-color border border-hover-color hover:bg-hover-color hover:text-white rounded-xl inline-block transition text-sm font-semibold"
+              className="p-2 text-hover-color border border-hover-color hover:bg-hover-color hover:text-white rounded-xl inline-block transition text-sm font-semibold"
             >
               + Create New Exam
             </Link>
           </div>
         </section>
 
-        <main className="flex-1 px-8 pb-8">
+        <main className="flex-1 px-2 md:px-8">
           <Outlet />
         </main>
       </div>
