@@ -29,7 +29,7 @@ const AuthLayout = () => {
   };
 
   return (
-    <div className="h-screen grid grid-cols-1 lg:grid-cols-[1fr_30%] overflow-hidden">
+    <div className="h-screen grid grid-cols-1 lg:grid-cols-[1fr_40%] overflow-hidden">
 
       <div
         className="hidden lg:flex relative w-full sticky h-screen justify-center items-center"

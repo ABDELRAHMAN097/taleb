@@ -3,24 +3,31 @@ import {
   HiOutlineGlobe,
   HiOutlineBell,
 } from "react-icons/hi";
+import { useI18n } from "@/i18n/i18n/context";
 
 export default function TopNavbar() {
-  return (
-   <header className="w-full px-2 md:px-8 py-2 flex items-center justify-between gap-4 bg-white">
+  const { switchLocale, locale } = useI18n()
 
-        <div className="relative flex-1 max-w-sm md:max-w-xl">
+  const handleSwitchLocale = () => {
+    const newLocale = locale === "en" ? "ar" : "en";
+    switchLocale(newLocale);
+  }
+  return (
+    <header className="w-full px-2 md:px-8 py-2 flex items-center justify-between gap-4 bg-white">
+
+      <div className="relative flex-1 max-w-sm md:max-w-xl">
         <HiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
 
         <input
-            type="text"
-            placeholder="Search"
-            className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl bg-[#F4F6FA]"
+          type="text"
+          placeholder="Search"
+          className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl bg-[#F4F6FA]"
         />
-        </div>
+      </div>
 
       <div className="flex items-center gap-2 md:gap-4">
 
-        <button className="p-2.5 border rounded-xl">
+        <button onClick={handleSwitchLocale} className="p-2.5 border rounded-xl">
           <HiOutlineGlobe className="w-3.5 h-3.5 md:w-5 md:h-5" />
         </button>
 

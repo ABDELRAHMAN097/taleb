@@ -1,8 +1,21 @@
 import { useState } from "react";
 import TapsDashboard from "../../components/TapsDashboard";
+import { myProfile } from "../../apis/auth";
+import { useEffect } from "react";
 
 export default function Dashboard() {
   const [examPeriod, setExamPeriod] = useState("Daily");
+
+  const getmyprofile = async () => {
+    const res = await myProfile();
+    console.log(res)
+    if (res.status === true) {
+
+    }
+  }
+  useEffect(() => {
+    getmyprofile()
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -31,17 +44,15 @@ export default function Dashboard() {
             <div className="flex items-center bg-gray-50 p-1.5 rounded-xl border border-gray-100 text-xs font-semibold text-gray-500 gap-1 self-start sm:self-auto">
               <button
                 onClick={() => setExamPeriod("Last 30 Days")}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  examPeriod === "Last 30 Days" ? "bg-white text-primary-color shadow-sm" : "hover:text-gray-800"
-                }`}
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${examPeriod === "Last 30 Days" ? "bg-white text-primary-color shadow-sm" : "hover:text-gray-800"
+                  }`}
               >
                 Last 30 Days
               </button>
               <button
                 onClick={() => setExamPeriod("Daily")}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
-                  examPeriod === "Daily" ? "bg-white text-primary-color shadow-sm" : "hover:text-gray-800"
-                }`}
+                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${examPeriod === "Daily" ? "bg-white text-primary-color shadow-sm" : "hover:text-gray-800"
+                  }`}
               >
                 Daily
               </button>
@@ -239,12 +250,11 @@ export default function Dashboard() {
               ].map((sub, idx) => (
                 <div key={idx} className="flex items-center justify-between text-sm font-semibold">
                   <div className="flex items-center gap-2 text-primary-color">
-                    <span className={`w-2.5 h-2.5 rounded-full ${
-                      idx === 0 ? "bg-[#11255C]" :
-                      idx === 1 ? "bg-slate-300" :
-                      idx === 2 ? "bg-slate-400" :
-                      idx === 3 ? "bg-slate-600" : "bg-slate-900"
-                    }`}></span>
+                    <span className={`w-2.5 h-2.5 rounded-full ${idx === 0 ? "bg-[#11255C]" :
+                        idx === 1 ? "bg-slate-300" :
+                          idx === 2 ? "bg-slate-400" :
+                            idx === 3 ? "bg-slate-600" : "bg-slate-900"
+                      }`}></span>
                     <span>{sub.label}</span>
                   </div>
                   <div className="flex items-center gap-4">
