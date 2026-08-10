@@ -2,12 +2,14 @@ import { useState } from "react";
 import TapsDashboard from "../../components/TapsDashboard";
 import { myProfile } from "../../apis/auth";
 import { useEffect } from "react";
+import StudentPerformance from "@/components/Dashboard/StudentPerformance";
 
 export default function Dashboard() {
   const [examPeriod, setExamPeriod] = useState("Daily");
 
   const getmyprofile = async () => {
     const res = await myProfile();
+    
     if (res.status === true) {
 
     }
@@ -23,7 +25,11 @@ export default function Dashboard() {
 
       {/* Middle Section Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6">
-        {/* Exams Bar Chart Mockup */}
+       <StudentPerformance />
+
+        
+
+          {/* Exams Bar Chart Mockup */}
         <div className="bg-white p-6 rounded-2xl border border-gray-100/50 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
@@ -86,56 +92,6 @@ export default function Dashboard() {
                   {col.label}
                 </span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Wallet Consumption Analytics Line Chart Mockup */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100/50 shadow-sm flex flex-col justify-between">
-          <div>
-            <h4 className="text-lg font-bold text-primary-color mb-1">Wallet Consumption Analytics</h4>
-            <div className="flex items-baseline gap-1.5 mb-6">
-              <span className="text-2xl font-black text-primary-color">2500</span>
-              <span className="text-xs font-bold text-gray-500">EGP</span>
-            </div>
-
-            {/* SVG Line Chart */}
-            <div className="w-full h-44 relative">
-              <svg className="w-full h-full" viewBox="0 0 300 120" preserveAspectRatio="none">
-                {/* Grid line */}
-                <line x1="0" y1="90" x2="300" y2="90" stroke="#f1f5f9" strokeWidth="1" />
-                <line x1="0" y1="50" x2="300" y2="50" stroke="#f1f5f9" strokeWidth="1" />
-                {/* Vertical Marker */}
-                <line x1="200" y1="0" x2="200" y2="120" stroke="#e2e8f0" strokeDasharray="3 3" />
-
-                {/* Line Path 1 (Gray) */}
-                <path
-                  d="M0,80 Q50,95 100,70 T200,60 T300,70"
-                  fill="none"
-                  stroke="#94A3B8"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-
-                {/* Line Path 2 (Dark Blue - Active) */}
-                <path
-                  d="M0,60 Q50,40 100,65 T200,30 T300,65"
-                  fill="none"
-                  stroke="#11255C"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-
-                {/* Marker Dot */}
-                <circle cx="200" cy="30" r="4.5" fill="#11255C" stroke="#FFFFFF" strokeWidth="1.5" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Chart Months */}
-          <div className="flex justify-between text-xs text-gray-400 mt-2 pt-2 border-t border-gray-50">
-            {["Jan", "Feb", "Mar", "Apr", "May", "Jun"].map((m) => (
-              <span key={m}>{m}</span>
             ))}
           </div>
         </div>
