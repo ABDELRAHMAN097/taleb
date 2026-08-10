@@ -80,7 +80,7 @@ export default function Sidebar({
     </button>
 
       {isOpen && (
-        <div className="h-full flex flex-col bg-primary-color py-4 px-2">
+        <div className="h-full flex flex-col justify-between bg-primary-color py-4 px-2">
 
           <div>
             <div className="mb-5">
@@ -133,9 +133,7 @@ export default function Sidebar({
             </nav>
           </div>
 
-              <button onClick={handleLogout}
-
-          
+            <button onClick={handleLogout}
             className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
             >
             <RiLogoutBoxRLine className="w-5 h-5" />
@@ -143,6 +141,72 @@ export default function Sidebar({
             <span>Log Out</span>
           
             </button>
+
+
+            <div className="p-4">
+              <div className="w-full border-t border-white/10 my-5" />
+              <div
+                className="
+                  w-full
+                  flex
+                  items-center
+                  gap-3
+                  px-3
+                  py-3
+                  rounded-xl
+                  bg-[#535f7e31]
+                "
+              >
+
+                <div
+                  className="
+                    w-9
+                    h-9
+                    shrink-0
+                    rounded-full
+                    bg-[#38BDF8]
+                    flex
+                    items-center
+                    justify-center
+                    text-white
+                    font-bold
+                    text-sm
+                  "
+                >
+                  AM
+                </div>
+
+
+                {/* User Info */}
+                <div className="min-w-0 flex flex-col">
+
+                  <span
+                    className="
+                      text-sm
+                      font-semibold
+                      text-white
+                      truncate
+                    "
+                  >
+                    Ahmed Mansour
+                  </span>
+
+                  <span
+                    className="
+                      text-xs
+                      text-gray-400
+                      mt-0.5
+                    "
+                  >
+                    Senior Tutor
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
         </div>
       )}
     </aside>
