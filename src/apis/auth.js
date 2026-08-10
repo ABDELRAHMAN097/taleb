@@ -13,3 +13,20 @@ export const myProfile = async () => {
     const res = await axiosInstance.get("auth/me");
     return res.data;
 };
+
+// Get available subjects
+export const getSubjects = async () => {
+    const res = await axiosInstance.get("teacher/subjects");
+    return res.data;
+};
+
+// Get available levels
+export const getLevels = async () => {
+    const res = await axiosInstance.get("teacher/levels");
+    return res.data;
+};
+// logout
+export const logout = async () => {
+  const res = await axiosInstance.post("auth/logout");
+  return res.data;
+};

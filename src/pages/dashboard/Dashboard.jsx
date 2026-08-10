@@ -8,7 +8,6 @@ export default function Dashboard() {
 
   const getmyprofile = async () => {
     const res = await myProfile();
-    console.log(res)
     if (res.status === true) {
 
     }

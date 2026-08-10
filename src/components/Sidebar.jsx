@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink , useNavigate } from "react-router-dom";
 
 import {
   HiOutlineChevronDown,
@@ -10,11 +10,26 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 
 import AuthHeader from "./shared/AuthHeader";
 import { menuItems } from "../components/sidebarData";
-
+import {logout} from "../apis/auth"
 export default function Sidebar({
   isOpen,
   setIsOpen,
 }) {
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+  try {
+    await logout();
+  } catch (error) {
+    console.error("Logout API error:", error);
+  } finally {
+    localStorage.removeItem("token");
+    localStorage.removeItem("talep_user");
+
+    navigate("/");
+  }
+};
   return (
     <aside
       className={`
@@ -38,38 +53,31 @@ export default function Sidebar({
     >
       {/* Toggle Button */}
 
-     <button
-  onClick={() => setIsOpen(!isOpen)}
-  className="
-    absolute
-    top-1/2
-    -translate-y-1/2
-    -right-3
-    w-6
-    h-16
-    bg-white
-    border
-    border-gray-300
-    rounded-md
-    shadow-sm
-    flex
-    items-center
-    justify-center
-    cursor-pointer
-    hover:bg-gray-50
-    transition
-    z-50
-  "
->
-  <span
-    className="
-      w-1
-      h-10
-      rounded-full
-      bg-gray-700
-    "
-  ></span>
-</button>
+    <button
+      onClick={() => setIsOpen(!isOpen)}
+      className="
+        absolute
+        top-1/2
+        -translate-y-1/2
+        -right-3
+        w-6
+        h-16
+        bg-white
+        border
+        border-gray-300
+        rounded-md
+        shadow-sm
+        flex
+        items-center
+        justify-center
+        cursor-pointer
+        hover:bg-gray-50
+        transition
+        z-50
+      "
+    >
+      <span className="w-1 h-10 rounded-full bg-gray-700" />
+    </button>
 
       {isOpen && (
         <div className="h-full flex flex-col bg-primary-color py-4 px-2">
@@ -125,14 +133,16 @@ export default function Sidebar({
             </nav>
           </div>
 
-          <Link
-            to="/"
+              <button onClick={handleLogout}
+
+          
             className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
-          >
+            >
             <RiLogoutBoxRLine className="w-5 h-5" />
 
             <span>Log Out</span>
-          </Link>
+          
+            </button>
         </div>
       )}
     </aside>

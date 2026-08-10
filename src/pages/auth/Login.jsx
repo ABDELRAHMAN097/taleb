@@ -18,7 +18,6 @@ export default function Login() {
   const handleLoginn = async () => {
     try {
       const res = await login(email, password)
-      console.log(res)
       if (res.success) {
 
         localStorage.setItem("talep_user", JSON.stringify(res.data.user))
@@ -26,7 +25,6 @@ export default function Login() {
         toast.success(res.message)
         navigate(toLocalePath('/dashboard'))
       } else {
-        console.log(res)
         toast.error(res.message)
       }
     } catch (error) {

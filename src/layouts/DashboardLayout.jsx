@@ -1,6 +1,5 @@
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import TopNavbar from "../components/TopNavbar";
 
@@ -12,8 +11,22 @@ export default function DashboardLayout() {
   const currentTitle =
     pageTitles[location.pathname] || "Dashboard";
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(
+      window.innerWidth >= 1024
+    );
 
+    useEffect(() => {
+      const handleResize = () => {
+        setIsSidebarOpen(window.innerWidth >= 1024);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+    
   return (
     <div className="min-h-screen flex bg-[#F4F6FA]">
 
