@@ -26,7 +26,7 @@ export default function Dashboard() {
       {/* 4 Top Cards Grid */}
       <TapsDashboard />
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 pb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pb-6">
        <StudentPerformance />
        <SubmissionRate />
        <LiveExamsStatus />

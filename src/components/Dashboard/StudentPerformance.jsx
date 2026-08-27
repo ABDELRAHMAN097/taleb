@@ -62,7 +62,7 @@ export default function StudentPerformance() {
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100/50 shadow-sm">
       {/* Header */}
-      <div className="flex items-start justify-between pb-5 border-b border-gray-100">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-gray-100">
         {/* Title */}
         <div className="flex flex-col items-stretch">
           <h4 className="text-xl font-bold text-primary-color mb-1">

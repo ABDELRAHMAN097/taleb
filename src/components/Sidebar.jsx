@@ -1,4 +1,4 @@
-import { NavLink , useNavigate } from "react-router-dom";
+import { NavLink , useNavigate ,useParams } from "react-router-dom";
 
 import {
   HiOutlineChevronDown,
@@ -17,6 +17,7 @@ export default function Sidebar({
 }) {
 
   const navigate = useNavigate();
+  const { locale } = useParams();
 
   const handleLogout = async () => {
   try {
@@ -35,20 +36,26 @@ export default function Sidebar({
       className={`
       fixed
       top-0
-      left-0
+      start-0
       h-screen
-      bg-white
-      border-r
-      border-gray-100
-      z-30
+      bg-primary-color
+      border-e
+      border-white/10
+      z-50
       transition-all
       duration-300
-      overflow-hidden
-      ${
-        isOpen
-          ? "w-[270px]"
-          : "w-[20px]"
-      }
+      
+      /* Mobile/Tablet: slide out of screen by default */
+      -translate-x-full
+      rtl:translate-x-full
+      lg:translate-x-0
+      w-[270px]
+
+      /* Open state on mobile */
+      ${isOpen ? "translate-x-0" : ""}
+
+      /* Desktop width toggle */
+      ${isOpen ? "lg:w-[270px]" : "lg:w-[20px]"}
     `}
     >
       {/* Toggle Button */}
@@ -59,7 +66,7 @@ export default function Sidebar({
         absolute
         top-1/2
         -translate-y-1/2
-        -right-3
+        end-[-12px]
         w-6
         h-16
         bg-white
@@ -67,7 +74,8 @@ export default function Sidebar({
         border-gray-300
         rounded-md
         shadow-sm
-        flex
+        hidden
+        lg:flex
         items-center
         justify-center
         cursor-pointer
@@ -79,136 +87,137 @@ export default function Sidebar({
       <span className="w-1 h-10 rounded-full bg-gray-700" />
     </button>
 
-      {isOpen && (
-        <div className="h-full flex flex-col justify-between bg-primary-color py-4 px-2">
+      <div
+        className={`h-full flex flex-col justify-between py-4 px-2 overflow-y-auto transition-all duration-300 origin-left rtl:origin-right
+        ${isOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95 lg:w-0"}`}
+      >
 
-          <div>
-            <div className="mb-5">
-              <AuthHeader
-              title="Taleb"
-              titleClass="text-hover-color text-4xl lg:text-6xl"
-              />
-            </div>
-
-            <nav className="flex flex-col gap-1.5">
-              {menuItems.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `flex items-center justify-between px-4 py-3 rounded-xl transition ${
-                        isActive
-                          ? "bg-hover-color text-primary-color font-bold"
-                          : "text-hover-color hover:bg-[#ebebeb] hover:text-gray-900"
-                      }`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        <div className="flex items-center gap-3">
-                          <Icon
-                            className={`w-5 h-5 ${
-                              isActive
-                                ? "text-primary-color"
-                                : "text-hover-color"
-                            }`}
-                          />
-
-                          <span className="text-sm">
-                            {item.name}
-                          </span>
-                        </div>
-
-                        {item.hasSubmenu && (
-                          <HiOutlineChevronDown className="w-4 h-4" />
-                        )}
-                      </>
-                    )}
-                  </NavLink>
-                );
-              })}
-            </nav>
+        <div>
+          <div className="mb-5">
+            <AuthHeader
+            title="Taleb"
+            titleClass="text-hover-color text-4xl lg:text-6xl"
+            />
           </div>
 
-            <button onClick={handleLogout}
-            className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
+          <nav className="flex flex-col gap-1.5">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <NavLink
+                  key={item.path}
+                  to={`/${locale}${item.path}`}
+                  className={({ isActive }) =>
+                    `flex items-center justify-between px-4 py-3 rounded-xl transition ${
+                      isActive
+                        ? "bg-hover-color text-primary-color font-bold"
+                        : "text-hover-color hover:bg-[#ebebeb] hover:text-gray-900"
+                    }`
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <Icon
+                          className={`w-5 h-5 ${
+                            isActive
+                              ? "text-primary-color"
+                              : "text-hover-color"
+                          }`}
+                        />
+
+                        <span className="text-sm">
+                          {item.name}
+                        </span>
+                      </div>
+
+                      {item.hasSubmenu && (
+                        <HiOutlineChevronDown className="w-4 h-4" />
+                      )}
+                    </>
+                  )}
+                </NavLink>
+              );
+            })}
+          </nav>
+        </div>
+
+          <button onClick={handleLogout}
+          className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
+          >
+          <RiLogoutBoxRLine className="w-5 h-5" />
+
+          <span>Log Out</span>
+        
+          </button>
+
+
+          <div className="p-4">
+            <div className="w-full border-t border-white/10 my-5" />
+            <div
+              className="
+                w-full
+                flex
+                items-center
+                gap-3
+                px-3
+                py-3
+                rounded-xl
+                bg-[#535f7e31]
+              "
             >
-            <RiLogoutBoxRLine className="w-5 h-5" />
 
-            <span>Log Out</span>
-          
-            </button>
-
-
-            <div className="p-4">
-              <div className="w-full border-t border-white/10 my-5" />
               <div
                 className="
-                  w-full
+                  w-9
+                  h-9
+                  shrink-0
+                  rounded-full
+                  bg-[#38BDF8]
                   flex
                   items-center
-                  gap-3
-                  px-3
-                  py-3
-                  rounded-xl
-                  bg-[#535f7e31]
+                  justify-center
+                  text-white
+                  font-bold
+                  text-sm
                 "
               >
+                AM
+              </div>
 
-                <div
+
+              {/* User Info */}
+              <div className="min-w-0 flex flex-col">
+
+                <span
                   className="
-                    w-9
-                    h-9
-                    shrink-0
-                    rounded-full
-                    bg-[#38BDF8]
-                    flex
-                    items-center
-                    justify-center
-                    text-white
-                    font-bold
                     text-sm
+                    font-semibold
+                    text-white
+                    truncate
                   "
                 >
-                  AM
-                </div>
+                  Ahmed Mansour
+                </span>
 
-
-                {/* User Info */}
-                <div className="min-w-0 flex flex-col">
-
-                  <span
-                    className="
-                      text-sm
-                      font-semibold
-                      text-white
-                      truncate
-                    "
-                  >
-                    Ahmed Mansour
-                  </span>
-
-                  <span
-                    className="
-                      text-xs
-                      text-gray-400
-                      mt-0.5
-                    "
-                  >
-                    Senior Tutor
-                  </span>
-
-                </div>
+                <span
+                  className="
+                    text-xs
+                    text-gray-400
+                    mt-0.5
+                  "
+                >
+                  Senior Tutor
+                </span>
 
               </div>
 
             </div>
 
-        </div>
-      )}
+          </div>
+
+      </div>
     </aside>
   );
 }

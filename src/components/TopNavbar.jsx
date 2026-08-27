@@ -1,11 +1,9 @@
-import {
-  HiOutlineSearch,
-  HiOutlineGlobe,
-  HiOutlineBell,
-} from "react-icons/hi";
+import { HiOutlineSearch, HiOutlineMenu } from "react-icons/hi";
+import { GrLanguage } from "react-icons/gr";
+import DropdownNotificat from "./shared/DropdownNotificat";
 import { useI18n } from "@/i18n/i18n/context";
 
-export default function TopNavbar() {
+export default function TopNavbar({ onMenuClick }) {
   const { switchLocale, locale } = useI18n()
 
   const handleSwitchLocale = () => {
@@ -13,33 +11,40 @@ export default function TopNavbar() {
     switchLocale(newLocale);
   }
   return (
-    <header className="w-full px-2 md:px-8 py-2 flex items-center justify-between gap-4 bg-white">
+    <header className="w-full px-2 py-2 flex items-center justify-between gap-4 bg-white border-b border-gray-100">
 
-      <div className="relative flex-1 max-w-sm md:max-w-xl">
-        <HiOutlineSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+      <div className="flex items-center gap-3 flex-1">
+        {/* Hamburger Menu for Mobile */}
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden p-2 rounded-xl hover:bg-gray-100 text-primary-color transition cursor-pointer"
+          aria-label="Toggle Menu"
+        >
+          <HiOutlineMenu className="w-6 h-6" />
+        </button>
 
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl bg-[#F4F6FA]"
-        />
+        <div className="relative flex-1 max-w-sm md:max-w-xl">
+          <HiOutlineSearch className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-full ps-11 pe-4 py-2.5 border border-gray-200 rounded-xl bg-[#F4F6FA]"
+          />
+        </div>
       </div>
 
       <div className="flex items-center gap-2 md:gap-4">
 
-        <button onClick={handleSwitchLocale} className="p-2.5 border rounded-xl">
-          <HiOutlineGlobe className="w-3.5 h-3.5 md:w-5 md:h-5" />
+        <button onClick={handleSwitchLocale} className="bg-[#F8F8F8] p-2.5 border border-gray-200 rounded-xl">
+          <GrLanguage className="text-[#94A3B8] w-3.5 h-3.5 md:w-5 md:h-5" />
         </button>
 
-        <button className="relative p-2.5 border rounded-xl">
-          <HiOutlineBell className="w-3.5 h-3.5 md:w-5 md:h-5" />
-
-          <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500"></span>
-        </button>
+       <DropdownNotificat />
 
         <div className="flex items-center gap-3">
 
-          <div className="text-right">
+          <div className="text-right hidden sm:block">
             <p className="text-sm md:text-xs text-gray-400">
               Welcome, Center
             </p>

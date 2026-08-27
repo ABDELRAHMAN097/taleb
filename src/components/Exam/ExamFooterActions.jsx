@@ -5,7 +5,7 @@ export default function ExamFooterActions({
   handlePublish,
 }) {
   return (
-    <div className="sticky bottom-0 -mx-8 px-8 py-4 bg-white border-t border-gray-200/60 shadow-[0_-4px_12px_rgba(0,0,0,0.02)] flex items-center justify-between z-10">
+    <div className="w-full sticky bottom-0 px-2  py-4 bg-white border-t border-gray-200/60 shadow-[0_-4px_12px_rgba(0,0,0,0.02)] flex items-center justify-between z-10">
 
       {/* Back */}
       <button

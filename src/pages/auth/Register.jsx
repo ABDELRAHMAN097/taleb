@@ -149,7 +149,7 @@ export default function Register() {
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <div className="w-full grid grid-cols-1 gap-4 bg-white border border-gray-300 rounded-2xl shadow-xl p-8">
+    <div className="w-full grid grid-cols-1 gap-4 bg-white border border-gray-300 rounded-2xl shadow-xl p-4 sm:p-8">
 
       {/* Logo & Header */}
       <div className="text-center">

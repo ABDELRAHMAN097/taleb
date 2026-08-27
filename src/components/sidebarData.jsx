@@ -59,4 +59,5 @@ export const pageTitles = {
   "/groups": "Groups",
   "/reports": "Reports",
   "/setting": "Setting",
+  "/notifications": "Notifications",
 };

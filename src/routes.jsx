@@ -18,6 +18,7 @@ import Groups from "@/pages/dashboard/Groups";
 import Reports from "@/pages/dashboard/Reports";
 import Setting from "@/pages/dashboard/Setting";
 import Exams from "@/pages/dashboard/Exams";
+import Notification from "@/pages/dashboard/Notifications";
 
 import { DEFAULT_LOCALE } from "./i18n/i18n/constant";
 import I18nProvider from "./i18n/i18n/I18nProvider";
@@ -82,6 +83,10 @@ export const routes = [
           {
             path: "exams",
             element: <Exams />,
+          },
+          {
+            path: "notifications",
+            element: <Notification />,
           },
           {
             path: "wallet",

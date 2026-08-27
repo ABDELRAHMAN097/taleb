@@ -77,9 +77,9 @@ export default function SubmissionRate() {
         </span>
       </div>
 
-      <div className="flex items-center justify-center gap-3 mt-5">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-5">
 
-        <div className="w-[300px] h-[300px] shrink-0">
+        <div className="w-[220px] h-[220px] sm:w-[260px] sm:h-[260px] shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
 
