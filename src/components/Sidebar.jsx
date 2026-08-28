@@ -1,106 +1,130 @@
-import { NavLink , useNavigate ,useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 import {
   HiOutlineChevronDown,
-  HiChevronLeft,
-  HiChevronRight,
 } from "react-icons/hi";
 
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
 import AuthHeader from "./shared/AuthHeader";
 import { menuItems } from "../components/sidebarData";
-import {logout} from "../apis/auth"
-export default function Sidebar({
-  isOpen,
-  setIsOpen,
-}) {
+import { logout } from "../apis/auth";
 
+export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const { locale } = useParams();
 
-  const handleLogout = async () => {
-  try {
-    await logout();
-  } catch (error) {
-    console.error("Logout API error:", error);
-  } finally {
-    localStorage.removeItem("token");
-    localStorage.removeItem("talep_user");
+  const isArabic = locale === "ar";
 
-    navigate("/");
-  }
-};
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout API error:", error);
+    } finally {
+      localStorage.removeItem("token");
+      localStorage.removeItem("talep_user");
+
+      navigate("/");
+    }
+  };
+
   return (
     <aside
       className={`
-      fixed
-      top-0
-      start-0
-      h-screen
-      bg-primary-color
-      border-e
-      border-white/10
-      z-50
-      transition-all
-      duration-300
-      
-      /* Mobile/Tablet: slide out of screen by default */
-      -translate-x-full
-      rtl:translate-x-full
-      lg:translate-x-0
-      w-[270px]
+        fixed
+        top-0
+        bottom-0
+        z-50
+        w-[270px]
+        bg-primary-color
+        border-white/10
+        transition-[width,transform]
+        duration-300
+        ease-in-out
 
-      /* Open state on mobile */
-      ${isOpen ? "translate-x-0" : ""}
+        ${isArabic ? "right-0 border-s" : "left-0 border-e"}
 
-      /* Desktop width toggle */
-      ${isOpen ? "lg:w-[270px]" : "lg:w-[20px]"}
-    `}
+        /* Mobile */
+        ${
+          isOpen
+            ? "translate-x-0"
+            : isArabic
+              ? "translate-x-full"
+              : "-translate-x-full"
+        }
+
+        /* Desktop */
+        lg:translate-x-0
+        ${isOpen ? "lg:w-[270px]" : "lg:w-[20px]"}
+      `}
     >
       {/* Toggle Button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="
+          absolute
+          top-1/2
+          -translate-y-1/2
+          end-[-12px]
+          z-50
 
-    <button
-      onClick={() => setIsOpen(!isOpen)}
-      className="
-        absolute
-        top-1/2
-        -translate-y-1/2
-        end-[-12px]
-        w-6
-        h-16
-        bg-white
-        border
-        border-gray-300
-        rounded-md
-        shadow-sm
-        hidden
-        lg:flex
-        items-center
-        justify-center
-        cursor-pointer
-        hover:bg-gray-50
-        transition
-        z-50
-      "
-    >
-      <span className="w-1 h-10 rounded-full bg-gray-700" />
-    </button>
+          hidden
+          lg:flex
 
-      <div
-        className={`h-full flex flex-col justify-between py-4 px-2 overflow-y-auto transition-all duration-300 origin-left rtl:origin-right
-        ${isOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95 lg:w-0"}`}
+          w-6
+          h-16
+
+          items-center
+          justify-center
+
+          bg-white
+          border
+          border-gray-300
+          rounded-md
+          shadow-sm
+
+          cursor-pointer
+          hover:bg-gray-50
+
+          transition-colors
+          duration-200
+        "
       >
+        <span className="w-1 h-10 rounded-full bg-gray-700" />
+      </button>
 
-        <div>
+      {/* Sidebar Content */}
+      <div
+        className={`
+          h-full
+          flex
+          flex-col
+          overflow-hidden
+
+          transition-opacity
+          duration-200
+
+          ${
+            isOpen
+              ? "opacity-100"
+              : "opacity-0 pointer-events-none"
+          }
+        `}
+      >
+        {/* Top */}
+        <div className="flex-1 overflow-y-auto px-2 py-4">
+          {/* Logo */}
           <div className="mb-5">
             <AuthHeader
-            title="Taleb"
-            titleClass="text-hover-color text-4xl lg:text-6xl"
+              title="Taleb"
+              titleClass="text-hover-color text-4xl lg:text-6xl"
             />
           </div>
 
-          <nav className="flex flex-col gap-1.5">
+          {/* Navigation */}
+          <nav className="flex flex-col gap-.5">
             {menuItems.map((item) => {
               const Icon = item.icon;
 
@@ -109,31 +133,47 @@ export default function Sidebar({
                   key={item.path}
                   to={`/${locale}${item.path}`}
                   className={({ isActive }) =>
-                    `flex items-center justify-between px-4 py-3 rounded-xl transition ${
+                    `
+                    flex
+                    items-center
+                    justify-between
+                    px-4
+                    py-3
+                    rounded-xl
+                    transition-colors
+                    duration-200
+
+                    ${
                       isActive
                         ? "bg-hover-color text-primary-color font-bold"
                         : "text-hover-color hover:bg-[#ebebeb] hover:text-gray-900"
-                    }`
+                    }
+                    `
                   }
                 >
                   {({ isActive }) => (
                     <>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
                         <Icon
-                          className={`w-5 h-5 ${
-                            isActive
-                              ? "text-primary-color"
-                              : "text-hover-color"
-                          }`}
+                          className={`
+                            w-5
+                            h-5
+                            shrink-0
+                            ${
+                              isActive
+                                ? "text-primary-color"
+                                : "text-hover-color"
+                            }
+                          `}
                         />
 
-                        <span className="text-sm">
+                        <span className="text-sm truncate">
                           {item.name}
                         </span>
                       </div>
 
                       {item.hasSubmenu && (
-                        <HiOutlineChevronDown className="w-4 h-4" />
+                        <HiOutlineChevronDown className="w-4 h-4 shrink-0" />
                       )}
                     </>
                   )}
@@ -143,18 +183,41 @@ export default function Sidebar({
           </nav>
         </div>
 
-          <button onClick={handleLogout}
-          className="sticky flex items-center gap-3 px-4 py-3 mt-8 rounded-xl text-hover-color hover:bg-red-50 hover:text-red-600 transition"
-          >
-          <RiLogoutBoxRLine className="w-5 h-5" />
+        {/* Bottom Section */}
+        <div className="shrink-0">
+          {/* Logout */}
+          <div className="px-2">
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="
+                w-full
+                flex
+                items-center
+                gap-3
+                px-4
+                py-3
+                rounded-xl
 
-          <span>Log Out</span>
-        
-          </button>
+                text-hover-color
 
+                hover:bg-red-50
+                hover:text-red-600
 
+                transition-colors
+                duration-200
+              "
+            >
+              <RiLogoutBoxRLine className="w-5 h-5 shrink-0" />
+
+              <span>Log Out</span>
+            </button>
+          </div>
+
+          {/* User */}
           <div className="p-4">
-            <div className="w-full border-t border-white/10 my-5" />
+            <div className="w-full border-t border-white/10 mb-4" />
+
             <div
               className="
                 w-full
@@ -167,7 +230,6 @@ export default function Sidebar({
                 bg-[#535f7e31]
               "
             >
-
               <div
                 className="
                   w-9
@@ -186,10 +248,7 @@ export default function Sidebar({
                 AM
               </div>
 
-
-              {/* User Info */}
               <div className="min-w-0 flex flex-col">
-
                 <span
                   className="
                     text-sm
@@ -210,14 +269,12 @@ export default function Sidebar({
                 >
                   Senior Tutor
                 </span>
-
               </div>
-
             </div>
-
           </div>
-
+        </div>
       </div>
     </aside>
   );
 }
+
