@@ -1,5 +1,7 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
 
+import { getTeacherProfile } from "../apis/auth";
 import {
   HiOutlineChevronDown,
 } from "react-icons/hi";
@@ -9,11 +11,12 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import AuthHeader from "./shared/AuthHeader";
 import { menuItems } from "../components/sidebarData";
 import { logout } from "../apis/auth";
+import { useI18n } from "../i18n/i18n/context";
 
 export default function Sidebar({ isOpen, setIsOpen }) {
   const navigate = useNavigate();
   const { locale } = useParams();
-
+  const { t } = useI18n();
   const isArabic = locale === "ar";
 
   const handleLogout = async () => {
@@ -28,6 +31,44 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       navigate("/");
     }
   };
+  // 
+  const [profile, setProfile] = useState(null);
+
+useEffect(() => {
+  const fetchProfile = async () => {
+    try {
+      const res = await getTeacherProfile();
+
+      if (res.success) {
+        setProfile(res.data.account);
+      }
+    } catch (error) {
+      console.error("SIDEBAR PROFILE ERROR:", error);
+    }
+  };
+
+  fetchProfile();
+}, []);
+
+const userName = profile?.user?.name || "Teacher";
+
+const primarySubject =
+  profile?.subjects?.find((subject) => subject.is_primary) ||
+  profile?.subjects?.[0];
+
+const subtitle =
+  primarySubject?.name_en ||
+  primarySubject?.name_ar ||
+  "Teacher";
+
+const initials = userName
+  .split(" ")
+  .map((name) => name[0])
+  .slice(0, 2)
+  .join("")
+  .toUpperCase();
+
+const profileImage = profile?.teacher_profile?.profile_image_url;
 
   return (
     <aside
@@ -168,7 +209,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                         />
 
                         <span className="text-sm truncate">
-                          {item.name}
+                          {t(item.name)}
                         </span>
                       </div>
 
@@ -210,7 +251,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             >
               <RiLogoutBoxRLine className="w-5 h-5 shrink-0" />
 
-              <span>Log Out</span>
+              <span>{t('Logout')}</span>
             </button>
           </div>
 
@@ -218,59 +259,32 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <div className="p-4">
             <div className="w-full border-t border-white/10 mb-4" />
 
-            <div
-              className="
-                w-full
-                flex
-                items-center
-                gap-3
-                px-3
-                py-3
-                rounded-xl
-                bg-[#535f7e31]
-              "
-            >
-              <div
-                className="
-                  w-9
-                  h-9
-                  shrink-0
-                  rounded-full
-                  bg-[#38BDF8]
-                  flex
-                  items-center
-                  justify-center
-                  text-white
-                  font-bold
-                  text-sm
-                "
+           <NavLink
+                to={`/${locale}/profile`}
+                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl bg-[#535f7e31] hover:bg-[#64748b4d] transition-colors"
               >
-                AM
-              </div>
+                {profileImage ? (
+                  <img
+                    src={profileImage}
+                    alt={userName}
+                    className="w-9 h-9 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-9 h-9 shrink-0 rounded-full bg-[#38BDF8] flex items-center justify-center text-white font-bold text-sm">
+                    {initials}
+                  </div>
+                )}
 
-              <div className="min-w-0 flex flex-col">
-                <span
-                  className="
-                    text-sm
-                    font-semibold
-                    text-white
-                    truncate
-                  "
-                >
-                  Ahmed Mansour
-                </span>
+                <div className="min-w-0 flex flex-col">
+                  <span className="text-sm font-semibold text-white truncate">
+                    {userName}
+                  </span>
 
-                <span
-                  className="
-                    text-xs
-                    text-gray-400
-                    mt-0.5
-                  "
-                >
-                  Senior Tutor
-                </span>
-              </div>
-            </div>
+                  <span className="text-xs text-gray-400 mt-0.5 truncate">
+                    {subtitle}
+                  </span>
+                </div>
+              </NavLink>
           </div>
         </div>
       </div>

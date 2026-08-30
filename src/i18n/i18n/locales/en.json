@@ -1,3 +1,21 @@
 {
-  "email": "Email Address"
+  "email": "Email Address",
+  "Logout": "Logout",
+  "Dashboard": "Dashboard",
+  "Assessments": "Assessments",
+  "Wallet": "Wallet",
+  "Question Bank": "Question Bank",
+  "Groups": "Groups",
+  "Reports": "Reports",
+  "Setting": "Setting",
+  "Recent":"Recent Activities",
+  "Loading activities...": "Loading activities...",
+  "No recent notifications": "No recent notifications.",
+  "You're all caught up!": "You're all caught up!",
+  "New Join Request": "New Join Request",
+  "Submission Rate": "Submission Rate",
+  "Not submitted": "Not submitted",
+  "Submitted": "Submitted",
+  "Students": "Students",
+  "No submission data yet": "No submission data yet"
 }

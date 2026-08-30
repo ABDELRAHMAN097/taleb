@@ -3,7 +3,6 @@ import {
   HiOutlineClipboardList,
   HiOutlineCreditCard,
 } from "react-icons/hi";
-
 import { GoInbox } from "react-icons/go";
 import { BiGroup } from "react-icons/bi";
 import { TbFileText, TbSettings } from "react-icons/tb";
@@ -61,3 +60,4 @@ export const pageTitles = {
   "/setting": "Setting",
   "/notifications": "Notifications",
 };
+

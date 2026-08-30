@@ -23,7 +23,7 @@ export default function Login() {
         localStorage.setItem("talep_user", JSON.stringify(res.data.user))
         localStorage.setItem("token", JSON.stringify(res.data.token))
         toast.success(res.message)
-        navigate(toLocalePath('/dashboard'))
+        navigate(toLocalePath('/dashboard'))  
       } else {
         toast.error(res.message)
       }
